@@ -32,18 +32,22 @@ export default function Home() {
   const tamagochiRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
 
   const handleTouchEnd: TouchEventHandler<HTMLDivElement> = (e) => {
-    const changedTouches = e.changedTouches[0];
-    if (tamagochiRef) {
-      const current = tamagochiRef.current;
-      const rect = current?.getBoundingClientRect();
-      if (
-        rect &&
-        changedTouches.pageX >= rect?.left &&
-        changedTouches.pageX <= rect?.left + rect?.width &&
-        changedTouches.pageY >= rect?.top &&
-        changedTouches.pageY <= rect?.top + rect?.height
-      ) {
-        handleFruitDrop();
+    if (draggedFruit) {
+      if (tamagochiRef) {
+        const changedTouches = e.changedTouches[0];
+        const current = tamagochiRef.current;
+        const rect = current?.getBoundingClientRect();
+        if (
+          rect &&
+          changedTouches.pageX >= rect.left &&
+          changedTouches.pageX <= rect.left + rect.width &&
+          changedTouches.pageY >= rect.top &&
+          changedTouches.pageY <= rect.top + rect.height
+        ) {
+          handleFruitDrop();
+        } else {
+          setDraggedFruit(null);
+        }
       }
     }
   };
@@ -75,8 +79,6 @@ export default function Home() {
 
     return () => clearInterval(progressInterval);
   }, []);
-
-  useEffect(() => {}, [draggedFruit]);
 
   return (
     <div
