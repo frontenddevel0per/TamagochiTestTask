@@ -17,7 +17,7 @@ export default function FruitBar({
   fruitCounts,
 }: FruitbarProps) {
   return (
-    <div className="flex justify-center space-x-[24px]">
+    <div className="flex justify-bottom space-x-[24px]">
       <Fruit
         image="apple"
         onDragStartFruit={onDragStartFruit}
