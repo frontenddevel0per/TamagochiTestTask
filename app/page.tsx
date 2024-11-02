@@ -82,7 +82,7 @@ export default function Home() {
 
   return (
     <div
-      className="flex flex-col items-center justify-items-center justify-start font-sans overflow-hidden bg-white"
+      className="flex flex-col items-center justify-items-center justify-start font-sans overflow-hidden bg-white h-full"
       onTouchEnd={handleTouchEnd}
     >
       <Tamagochi ref={tamagochiRef} onDropFruit={handleFruitDrop} />
